@@ -13,4 +13,4 @@ jobs:
       - name: Scan de l'image avec Trivy
         run: |
           docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest image \
-            --ignore-unfixed --severity HIGH,CRITICAL --exit-code 1 drwz:latest
+            --ignore-unfixed --severity HIGH,CRITICAL --exit-code 1 drwz1.3:latest
