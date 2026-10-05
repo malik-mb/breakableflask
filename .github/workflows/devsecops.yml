@@ -6,14 +6,9 @@ jobs:
     steps:
       - name: Récupération du code
         uses: actions/checkout@v4
-
       - name: Dependances
         run: |
-          docker run --rm -v "$PWD":/project aquasec/trivy:latest fs \
-            --scanners vuln \
-            --severity HIGH,CRITICAL \
-            --exit-code 1 \
-            /project/requirements.txt
+          docker run --rm -v "$PWD":/project aquasec/trivy:latest fs --scanners vuln --severity HIGH,CRITICAL --exit-code 1 /project/requirements.txt
 
   Dockerfile:
     runs-on: ubuntu-latest
@@ -21,13 +16,9 @@ jobs:
     steps:
       - name: Récupération du code
         uses: actions/checkout@v4
-
       - name: Test Dockerfile
         run: |
-          docker run --rm -v "$PWD":/project aquasec/trivy:latest config \
-            --severity HIGH,CRITICAL \
-            --exit-code 1 \
-            /project/Dockerfile
+          docker run --rm -v "$PWD":/project aquasec/trivy:latest config --severity HIGH,CRITICAL --exit-code 1 /project/Dockerfile
 
   Deploy:
     runs-on: ubuntu-latest
